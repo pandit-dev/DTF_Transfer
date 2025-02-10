@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Navbar from './pages/Navbar';
-import Home from './pages/Home';
-import ContactPage from './pages/ContactPage';
-import Footer from './pages/Footer';
-import BlogPage from './pages/BlogPage';
-import FAQPage from './pages/FAQPage';
-import HeatPress from './pages/HeatPress';
-import ProductPage from './pages/ProductPage';
+import Navbar from './pages/Navbar.jsx';
+import Home from './pages/Home.jsx';
+import ContactPage from './pages/ContactPage.jsx';
+import Footer from './pages/Footer.jsx';
+import BlogPage from './pages/BlogPage.jsx';
+import FAQPage from './pages/FAQPage.jsx';
+import HeatPress from './pages/HeatPress.jsx';
+import ProductPage from './pages/ProductPage.jsx';
  
 
 function App() {

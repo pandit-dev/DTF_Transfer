@@ -1,7 +1,7 @@
 import { ChevronDown, ChevronUp } from "lucide-react";
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Counter from "../components/Counter";
+import Counter from "../components/Counter.jsx";
 
 const products = [
   {

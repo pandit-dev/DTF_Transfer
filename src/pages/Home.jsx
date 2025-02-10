@@ -1,11 +1,11 @@
 import React from "react";
-import DTFPrintCollection from "../components/DTFPrintCollection";
-import DTFOrderingSteps from "../components/DTFOrderingSteps";
-import SatisfactionSection from "../components/SatisfactionSection";
-import Testimonials from "../components/Testimonials";
-import DTFTransfersSection from "../components/DTFTransfersSection";
-import Blogs from "../components/Blogs";
-import FAQ from "../components/faq";
+import DTFPrintCollection from "../components/DTFPrintCollection.jsx";
+import DTFOrderingSteps from "../components/DTFOrderingSteps.jsx";
+import SatisfactionSection from "../components/SatisfactionSection.jsx";
+import Testimonials from "../components/Testimonials.jsx";
+import DTFTransfersSection from "../components/DTFTransfersSection.jsx";
+import Blogs from "../components/Blogs.jsx";
+import FAQ from "../components/FAQ.jsx";
 import { Link } from "react-router-dom";
 
 const Home = () => {
