@@ -31,7 +31,7 @@ const Navbar = () => {
       <header className="w-full bg-black hidden md:flex justify-center text-white  py-2 text-sm">
         FREE SHIPPING OVER $100 - SAME DAY SHIPPING IF ORDERED BY 10 AM PST
       </header>
-      <nav className="flex justify-between  px-10 py-4 bg-white shadow-md sticky top-0 z-10">
+      <nav className="flex justify-between items-center  px-10 py-4  bg-white shadow-md sticky top-0 z-10">
         <h1 className="text-xl font-bold">
           <img src="/home/kinglogo.png" alt="KINGS DTF" className="w-36" />
         </h1>
@@ -45,19 +45,19 @@ const Navbar = () => {
           {isMenuOpen ? <X /> : <Menu />}
         </button>
         <ul
-          className={`fixed z-10 py-8 top-16 left-0 w-full h-auto bg-gray-200 flex flex-col  space-x-8 justify-center space-y-8 transform md:static md:w-auto md:h-auto md:bg-transparent md:flex-row md:space-y-0 md:space-x-6 md:py-0 transition-transform duration-300 ease-in-out ${
+          className={`fixed z-10 py-8 top-16 left-0 w-full h-auto bg-gray-200 flex flex-col space-y-8 items-center justify-center  transform md:static md:w-auto md:h-auto md:bg-transparent md:flex-row md:space-y-0 md:space-x-6 md:py-0 transition-transform duration-300 ease-in-out ${
             isMenuOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
           }`}
         >
           <NavLink
             to="/"
             className={({ isActive }) =>
-              `cursor-pointer font-medium ${isActive ? 'underline font-bold' : ''}`
-            }
+              `cursor-pointer font-medium text-center ${isActive ? 'underline font-bold' : ''}`
+            } onClick={()=>{setIsMenuOpen(false)}}
           >
             Home
           </NavLink>
-          <div ref={dropdownRef} className="relative cursor-pointer font-medium flex items-center">
+          <NavLink ref={dropdownRef} className="relative cursor-pointer font-medium flex items-center">
             <span
               className={`flex items-center ${
                 isDropdownOpen ? 'underline font-bold' : ''
@@ -81,6 +81,7 @@ const Navbar = () => {
                       isActive ? 'underline font-bold' : ''
                     }`
                   }
+                  onClick={()=>{setIsDropdownOpen(false),setIsMenuOpen(false)}}
                 >
                   DTF GANG SHEET TRANSFERS
                 </NavLink>
@@ -90,7 +91,7 @@ const Navbar = () => {
                     `px-4 py-2 hover:bg-gray-100 cursor-pointer ${
                       isActive ? 'underline font-bold' : ''
                     }`
-                  }
+                  } onClick={()=>{setIsDropdownOpen(false),setIsMenuOpen(false)}}
                 >
                   DTF TRANSFERS BY SIZE
                 </NavLink>
@@ -100,18 +101,18 @@ const Navbar = () => {
                     `px-4 py-2 hover:bg-gray-100 cursor-pointer ${
                       isActive ? 'underline font-bold' : ''
                     }`
-                  }
+                  } onClick={()=>{setIsDropdownOpen(false),setIsMenuOpen(false)}}
                 >
                   DTF Transfers Custom Sizing
                 </NavLink>
               </ul>
             )}
-          </div>
+          </NavLink>
           <NavLink
             to="/faq"
             className={({ isActive }) =>
-              `cursor-pointer font-medium ${isActive ? 'underline font-bold' : ''}`
-            }
+              `cursor-pointer font-medium text-center ${isActive ? 'underline font-bold' : ''}`
+            } onClick={()=>{setIsMenuOpen(false)}}
           >
             FAQ
           </NavLink>
@@ -119,7 +120,7 @@ const Navbar = () => {
             to="/blogs"
             className={({ isActive }) =>
               `cursor-pointer font-medium ${isActive ? 'underline font-bold' : ''}`
-            }
+            } onClick={()=>{setIsMenuOpen(false)}}
           >
             Blogs
           </NavLink>
@@ -127,7 +128,7 @@ const Navbar = () => {
             to="/contact"
             className={({ isActive }) =>
               `cursor-pointer font-medium ${isActive ? 'underline font-bold' : ''}`
-            }
+            } onClick={()=>{setIsMenuOpen(false)}}
           >
             Contact
           </NavLink>
