@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Search, User, ShoppingBag, ChevronDown, ChevronUp } from 'lucide-react';
+import { Search, User, ShoppingBag, ChevronDown, ChevronUp, Menu, X } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const dropdownRef = useRef(null);
+  // const menuOpenRef = useRef(null)
 
   useEffect(() => {
     function handleClickOutside(e) {
@@ -26,14 +28,27 @@ const Navbar = () => {
 
   return (
     <>
-      <header className="w-full bg-black text-white text-center py-2 text-sm">
+      <header className="w-full bg-black hidden md:flex justify-center text-white  py-2 text-sm">
         FREE SHIPPING OVER $100 - SAME DAY SHIPPING IF ORDERED BY 10 AM PST
       </header>
-      <nav className="w-full flex justify-between items-center px-10 py-4 bg-white shadow-md sticky top-0 z-10">
+      <nav className="flex justify-between  px-10 py-4 bg-white shadow-md sticky top-0 z-10">
         <h1 className="text-xl font-bold">
           <img src="/home/kinglogo.png" alt="KINGS DTF" className="w-36" />
         </h1>
-        <ul className="flex space-x-6 text-gray-700">
+         {/* Hamburger Menu (Mobile) */}
+         <button
+          className="text-2xl md:hidden   focus:outline-none"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label="Toggle Menu"
+          aria-expanded={isMenuOpen}
+        >
+          {isMenuOpen ? <X /> : <Menu />}
+        </button>
+        <ul
+          className={`fixed z-10 py-8 top-16 left-0 w-full h-auto bg-gray-200 flex flex-col  space-x-8 justify-center space-y-8 transform md:static md:w-auto md:h-auto md:bg-transparent md:flex-row md:space-y-0 md:space-x-6 md:py-0 transition-transform duration-300 ease-in-out ${
+            isMenuOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
+          }`}
+        >
           <NavLink
             to="/"
             className={({ isActive }) =>
@@ -116,12 +131,13 @@ const Navbar = () => {
           >
             Contact
           </NavLink>
-        </ul>
-        <div className="flex space-x-8">
+          </ul>
+        <div className=" space-x-8 hidden md:flex">
           <Search className="cursor-pointer w-6 h-6" />
           <User className="cursor-pointer w-6 h-6" />
           <ShoppingBag className="cursor-pointer w-6 h-6" />
         </div>
+        
       </nav>
     </>
   );
