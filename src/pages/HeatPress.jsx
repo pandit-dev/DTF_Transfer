@@ -36,14 +36,14 @@ const HeatPress = () => {
     <div className="bg-white py-12 px-6">
       <div className="max-w-6xl mx-auto text-center">
         {/* Page Title */}
-        <h1 className="text-7xl font-bold text-gray-900">
+        <h1 className="text-3xl md:text-5xl font-extrabold leading-tight text-black">
           Heat Press Instructions For DTF Transfers
         </h1>
 
         {/* Intro Section */}
-        <div className="mt-6 flex items-center justify-center gap-8">
-          <div className="w-1/2">
-            <h2 className="text-3xl font-semibold">
+        <div className="mt-6 flex flex-col md:flex-row items-center justify-center gap-8">
+          <div className="md:w-1/2">
+            <h2 className="text-xl md:text-3xl font-extrabold leading-tight text-black">
               Step-by-Step Guide for Applying Easy Peel DTF Transfers Using a
               Heat Press
             </h2>
@@ -58,7 +58,7 @@ const HeatPress = () => {
           </div>
           
             {/* Main Image */}
-            <div className="mt-6 w-1/2">
+            <div className="mt-6 md:w-1/2">
               <img
                 src="/heat/heat1.webp"
                 alt="Heat Press Process"
@@ -81,14 +81,14 @@ const HeatPress = () => {
         {steps.map((step, index) => (
           <div
             key={step.id}
-            className={`flex items-center bg-white shadow-lg rounded-lg overflow-hidden gap-8 p-9  ${
-              index % 2 === 0 ? "flex-row" : "flex-row-reverse"
+            className={`flex flex-col md:flex-row items-center bg-white shadow-lg rounded-lg overflow-hidden gap-8 p-9  ${
+              index % 2 === 0 ? "flex-row" : "md:flex-row-reverse"
             }`}
           >
             <img
               src={step.image}
               alt={step.title}
-              className="rounded-lg shadow-lg w-1/2"
+              className="rounded-lg shadow-lg md:w-1/2"
             />
             <div>
               <h3 className="text-xl font-bold text-blue-600">{step.title}</h3>

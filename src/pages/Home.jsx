@@ -85,8 +85,8 @@ const Home = () => {
         <h2 className="font-bold text-2xl md:text-3xl pb-6">Join Us in Crafting DTF Innovations</h2>
         <p>Collaborate with us to revolutionize DTF printing, creating vibrant designs that inspire and elevate your brand. Together, let's shape a brighter future of custom apparel and merchandise</p>
         </div>
-        <div className="w-1/2">
-        <img src="/home/join_us.webp" alt="join us" />
+        <div className="md:w-1/2">
+        <img src="/home/join_us.webp" alt="join us" className="rounded-lg shadow-lg w-full" />
         </div>
       </section>
     </>
