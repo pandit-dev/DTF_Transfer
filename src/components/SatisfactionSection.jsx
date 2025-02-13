@@ -37,7 +37,7 @@ const SatisfactionSection = () => {
     <section className="py-12 px-4 max-w-6xl mx-auto flex flex-col md:flex-row items-center">
       {/* Left Side - Heading */}
       <div className="w-full md:w-1/2">
-        <h2 className="text-5xl font-bold text-black">
+        <h2 className="text-3xl md:text-5xl font-bold  text-black">
           Your Satisfaction Is Our Priority
         </h2>
         <p className="text-gray-600 text-xl mt-2">Shopping with confidence</p>
@@ -46,7 +46,7 @@ const SatisfactionSection = () => {
       {/* Right Side - Features Grid */}
       <div className="w-full md:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8 md:mt-0">
         {features.map((feature) => (
-          <div key={feature.id} className="flex flex-col space-y-5">
+          <div key={feature.id} className="flex flex-col items-center md:items-start space-y-5">
             {feature.icon}
 
             <h3 className="font-semibold text-xl">{feature.title}</h3>

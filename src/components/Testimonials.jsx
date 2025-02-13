@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { Star, Quote } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { Star, Quote, ChevronLeftCircle, ChevronRightCircle } from "lucide-react";
 
 const testimonials = [
   {
     id: 1,
     name: "John Smith",
-    image: "/home/man1.png", // Replace with actual image URL
+    image: "/home/man1.png",
     review:
       "Kings DTF Transfer has revolutionized the way I create custom apparel. The quality of their transfers is unmatched, and their customer service is exceptional.",
   },
@@ -48,23 +48,25 @@ const testimonials = [
 
 const Testimonials = () => {
   const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 3;
+  const [itemsPerPage, setItemsPerPage] = useState(3);
+
+  useEffect(() => {
+    const updateItemsPerPage = () => {
+      setItemsPerPage(window.innerWidth < 768 ? 1 : 3);
+    };
+
+    updateItemsPerPage();
+    window.addEventListener("resize", updateItemsPerPage);
+    return () => window.removeEventListener("resize", updateItemsPerPage);
+  }, []);
 
   const totalPages = Math.ceil(testimonials.length / itemsPerPage);
-
-  const nextPage = () => {
-    setCurrentPage((prev) => (prev + 1) % totalPages);
-  };
-
-  const prevPage = () => {
-    setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages);
-  };
 
   return (
     <section className="bg-blue-50 py-12">
       <div className="max-w-6xl mx-auto px-4">
         {/* Section Title */}
-        <h2 className="text-3xl font-bold text-center text-black mb-8">
+        <h2 className="text-3xl md:text-5xl font-bold text-center text-black mb-8">
           What Our Customers Say
         </h2>
 
@@ -81,7 +83,7 @@ const Testimonials = () => {
                 <img
                   src={testimonial.image}
                   alt={testimonial.name}
-                  className="w-full h-48 object-cover rounded-lg"
+                  className="w-full h-auto md:h-48 object-cover rounded-lg"
                 />
 
                 {/* Name & Stars */}
@@ -101,7 +103,17 @@ const Testimonials = () => {
 
         {/* Pagination Controls */}
         <div className="flex justify-center items-center mt-6 space-x-4">
-          
+          {/* Previous Button */}
+          <button
+            onClick={() =>
+              setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages)
+            }
+            className="px-4 py-2 rounded-full"
+          >
+            <ChevronLeftCircle/>
+          </button>
+
+          {/* Page Indicators */}
           <div className="flex space-x-2">
             {Array.from({ length: totalPages }).map((_, index) => (
               <button
@@ -113,7 +125,14 @@ const Testimonials = () => {
               ></button>
             ))}
           </div>
-         
+
+          {/* Next Button */}
+          <button
+            onClick={() => setCurrentPage((prev) => (prev + 1) % totalPages)}
+            className="px-4 py-2 rounded-full"
+          >
+            <ChevronRightCircle/>
+          </button>
         </div>
       </div>
     </section>

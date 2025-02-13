@@ -4,9 +4,9 @@ const Footer = () => {
   return (
     <>
       
-      <div className="py-4 px-24 border-t border-b bg-gray-50 ">
+      <div className="md:py-4 px-24 border-t border-b bg-gray-50 ">
         
-        <div className="flex flex-col md:flex-row items-center justify-between my-10 ">
+        <div className="flex flex-col md:flex-row gap-2 items-center justify-between md:my-10 my-4">
           <h2 className="text-lg font-bold mb-4 md:mb-0">
             Subscribe to our emails
           </h2>
@@ -26,8 +26,8 @@ const Footer = () => {
       
 
       {/* Payment Methods & Copyright */}
-      <div className="py-4 px-24 bg-gray-50 ">
-        <div className=" flex flex-col md:flex-row items-center justify-between my-10">
+      <div className="p-4 md:px-24  bg-gray-50 ">
+        <div className=" flex flex-col md:flex-row items-center justify-between md:my-10 my-4">
           <p className="text-gray-600 text-sm">
             © 2025, Kings DTF Transfers Powered by Shopify
           </p>
