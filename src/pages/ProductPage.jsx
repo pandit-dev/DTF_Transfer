@@ -201,7 +201,7 @@ const ProductPage = () => {
       {/* Recommended Products */}
       <div className="mt-12">
         <h2 className="text-2xl font-bold">You may also like</h2>
-        <div className="flex gap-10">
+        <div className="flex gap-2 md:gap-10">
           {products
             .filter((product) => product.id !== selectedProduct?.id)
             .map((item) => (
