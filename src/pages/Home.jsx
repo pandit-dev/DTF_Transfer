@@ -31,7 +31,7 @@ const Home = () => {
         </div>
       </div>
       <div className="md:w-1/2 mt-10 md:mt-0">
-        <img src="/home/banner.png" alt="Banner" className="w-full max-w-lg mx-auto" />
+        <img src="/home/banner.png" alt="Banner" className="w-full  mx-auto" />
       </div>
     </div>
 

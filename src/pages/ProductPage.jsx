@@ -12,7 +12,7 @@ const products = [
       "Versatile Printing: Print any design and transfer it onto any product, material, or color with outstanding durability.",
     mainImage: "/product/bySize.webp",
     sizes: [
-      '2"x2"',
+      '2"x2"', 
       '3"x3"',
       '4"x2"',
       '4"x4"',
@@ -107,6 +107,7 @@ const ProductPage = () => {
   // Update product when route changes
   useEffect(() => {
     setSelectedProduct(getProductById(id));
+    
   }, [id]);
 
   return (
@@ -132,7 +133,7 @@ const ProductPage = () => {
 
          
           <label className="w-full bg-black text-white py-2 rounded-md my-5 flex items-center justify-center cursor-pointer">
-            <span>Drag and drop your file or Browse</span>
+            <span>Drag and drop your file or <span className="underline">Browse</span></span>
             <input type="file" className="hidden" />
           </label>
 
@@ -142,7 +143,7 @@ const ProductPage = () => {
             {selectedProduct?.sizes.map((size, index) => (
               <span
                 key={index}
-                className="px-4 py-2 bg-gray-200 rounded-md cursor-pointer"
+                className="px-4 py-2 bg-gray-200 rounded-md cursor-pointer"                
               >
                 {size}
               </span>
@@ -175,6 +176,7 @@ const ProductPage = () => {
                 <button
                   onClick={() =>
                     setExpandedFeature(expandedFeature === index ? null : index)
+                    
                   }
                   className="w-full text-left flex justify-between items-center"
                 >
