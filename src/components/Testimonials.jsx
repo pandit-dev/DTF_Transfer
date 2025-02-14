@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Star, Quote, ChevronLeftCircle, ChevronRightCircle } from "lucide-react";
+import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
 
 const testimonials = [
   {
@@ -76,18 +76,18 @@ const Testimonials = () => {
             .slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage)
             .map((testimonial) => (
               <div
-                key={testimonial.id}
+                key={testimonial?.id}
                 className="bg-white rounded-lg shadow-lg p-6 text-center"
               >
                 {/* Image */}
                 <img
-                  src={testimonial.image}
-                  alt={testimonial.name}
+                  src={testimonial?.image}
+                  alt={testimonial?.name}
                   className="w-full h-auto md:h-48 object-cover rounded-lg"
                 />
 
                 {/* Name & Stars */}
-                <h3 className="font-semibold mt-4">{testimonial.name}</h3>
+                <h3 className="font-semibold mt-4">{testimonial?.name}</h3>
                 <div className="flex justify-center text-blue-500 mt-1">
                   {[...Array(5)].map((_, index) => (
                     <Star key={index} className="w-4 h-4 fill-blue-500" />
@@ -96,7 +96,9 @@ const Testimonials = () => {
 
                 {/* Quote Icon & Review */}
                 <Quote className="w-6 h-6 text-gray-600 mx-auto mt-2" />
-                <p className="text-gray-600 text-sm mt-2">{testimonial.review}</p>
+                <p className="text-gray-600 text-sm mt-2">
+                  {testimonial?.review}
+                </p>
               </div>
             ))}
         </div>
@@ -108,9 +110,9 @@ const Testimonials = () => {
             onClick={() =>
               setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages)
             }
-            className="px-4 py-2 rounded-full"
+            className="p-4 rounded-full hover:bg-gray-300"
           >
-            <ChevronLeftCircle/>
+            <ChevronLeft />
           </button>
 
           {/* Page Indicators */}
@@ -129,9 +131,9 @@ const Testimonials = () => {
           {/* Next Button */}
           <button
             onClick={() => setCurrentPage((prev) => (prev + 1) % totalPages)}
-            className="px-4 py-2 rounded-full"
+            className="p-4 rounded-full hover:bg-gray-300"
           >
-            <ChevronRightCircle/>
+            <ChevronRight />
           </button>
         </div>
       </div>

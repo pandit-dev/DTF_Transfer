@@ -3,9 +3,7 @@ import React from "react";
 const Footer = () => {
   return (
     <>
-      
       <div className="md:py-4 px-24 border-t border-b bg-gray-50 ">
-        
         <div className="flex flex-col md:flex-row gap-2 items-center justify-between md:my-10 my-4">
           <h2 className="text-lg font-bold mb-4 md:mb-0">
             Subscribe to our emails
@@ -23,7 +21,6 @@ const Footer = () => {
           </button>
         </div>
       </div>
-      
 
       {/* Payment Methods & Copyright */}
       <div className="p-4 md:px-24  bg-gray-50 ">
@@ -90,7 +87,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-     
     </>
   );
 };

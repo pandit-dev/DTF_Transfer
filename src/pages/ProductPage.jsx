@@ -7,58 +7,60 @@ const products = [
   {
     id: 1,
     title: "DTF Transfers By Size",
-    price: 1.49,
+    basePrice: 1.49,
     description:
       "Versatile Printing: Print any design and transfer it onto any product, material, or color with outstanding durability.",
-    mainImage: "/product/bySize.webp",
+    mainImage: "/product/bySize/1.webp",
     sizes: [
-      '2"x2"', 
-      '3"x3"',
-      '4"x2"',
-      '4"x4"',
-      '5"x3"',
-      '5"x5"',
-      '6"x6"',
-      '7"x7"',
-      '8"x8"',
-      '9"x11"',
-      '10"x10"',
-      '11"x5"',
-      '11"x11"',
-      '12"x17"',
+      { size: '2"x2"', price: 1.49, image: "/product/bySize/1.webp" },
+      { size: '3"x3"', price: 2.49, image: "/product/bySize/2.webp" },
+      { size: '4"x2"', price: 1.99, image: "/product/bySize/3.webp" },
+      { size: '4"x4"', price: 2.99, image: "/product/bySize/4.webp" },
+      { size: '5"x3"', price: 3, image: "/product/bySize/5.webp" },
+      { size: '5"x5"', price: 3.25, image: "/product/bySize/6.webp" },
+      { size: '6"x6"', price: 3.49, image: "/product/bySize/7.webp" },
+      { size: '7"x7"', price: 3.99, image: "/product/bySize/8.webp" },
+      { size: '8"x8"', price: 4.49, image: "/product/bySize/9.webp" },
+      { size: '9"x11"', price: 5.29, image: "/product/bySize/10.webp" },
+      { size: '10"x10"', price: 5.49, image: "/product/bySize/11.webp" },
+      { size: '11"x5"', price: 5.49, image: "/product/bySize/12.webp" },
+      { size: '11"x11"', price: 5.99, image: "/product/bySize/13.webp" },
+      { size: '11"x14"', price: 6.49, image: "/product/bySize/14.webp" },
+      { size: '12"x17"', price: 6.99, image: "/product/bySize/15.webp" },
     ],
   },
   {
     id: 2,
     title: "DTF Gang Sheet Transfers",
-    price: 11.0,
+    basePrice: 11.0,
     description:
       "If you need a larger DTF gang sheet, adjust the quantity in your order to get more sheets. Add them to your cart and repeat the process until you have the desired number of sheets.",
-    mainImage: "/product/sheetTrans.webp",
+    mainImage: "/product/gang/2.webp",
     sizes: [
-      "22.5 in x 12 in",
-      "22.5 in x 24 in",
-      "22.5 in x 36 in",
-      "22.5 in x 48 in",
-      "22.5 in x 60 in",
-      "22.5 in x 84 in",
-      "22.5 in x 120 in",
+      { size: "22.5 in x 12 in", price: 11, image: "/product/gang/2.webp" },
+      { size: "22.5 in x 24 in", price: 17, image: "/product/gang/3.webp" },
+      { size: "22.5 in x 36 in", price: 21, image: "/product/gang/4.webp" },
+      { size: "22.5 in x 48 in", price: 26, image: "/product/gang/5.webp" },
+      { size: "22.5 in x 60 in", price: 32, image: "/product/gang/6.webp" },
+      { size: "22.5 in x 84 in", price: 43, image: "/product/gang/7.webp" },
+      { size: "22.5 in x 96 in", price: 49, image: "/product/gang/8.webp" },
+      { size: "22.5 in x 120 in", price: 58, image: "/product/gang/1.webp" },
     ],
   },
   {
     id: 3,
     title: "DTF Gang Sheet Transfers - Gang Sheet Builder",
-    price: 17.99,
+    basePrice: 7.99,
     description:
       "Maximize your savings with our budget-friendly DTF Gang Sheets Builder, designed for your ready-to-print designs.",
-    mainImage: "/product/build.webp",
+    mainImage: "/product/custom/1.webp",
     sizes: [
-      "22.5 in x 12 in",
-      "22.5 in x 24 in",
-      "22.5 in x 36 in",
-      "22.5 in x 60 in",
-      "22.5 in x 84 in",
-      "22.5 in x 120 in",
+      { size: "22.5 in x 12 in", price: 7.99, image: "/product/custom/1.webp" },
+      { size: "22.5 in x 24 in", price: 13.99 },
+      { size: "22.5 in x 36 in", price: 17.99 },
+      { size: "22.5 in x 60 in", price: 28.99 },
+      { size: "22.5 in x 84 in", price: 39.99 },
+      { size: "22.5 in x 120 in", price: 59.99 },
     ],
   },
 ];
@@ -98,16 +100,21 @@ const ProductPage = () => {
 
   // Convert id from URL params to number
   const getProductById = (id) =>
-    products.find((p) => p.id === Number(id)) || products[0];
+    products?.find((p) => p.id === Number(id)) || products[0];
 
   // State for selected product
   const [selectedProduct, setSelectedProduct] = useState(getProductById(id));
+  // State for selected size
+  const [selectedSize, setSelectedSize] = useState(selectedProduct?.sizes[0]);
+
   const [expandedFeature, setExpandedFeature] = useState(null);
 
   // Update product when route changes
   useEffect(() => {
-    setSelectedProduct(getProductById(id));
-    
+    const newProduct = getProductById(id);
+    setSelectedProduct(newProduct);
+    setSelectedSize(newProduct?.sizes[0]);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, [id]);
 
   return (
@@ -117,7 +124,11 @@ const ProductPage = () => {
         {/* Product Image */}
         <div>
           <img
-            src={selectedProduct?.mainImage}
+            src={
+              selectedSize?.image ||
+              selectedProduct?.sizes[0]?.image ||
+              selectedProduct?.mainImage
+            }
             alt={selectedProduct?.title}
             className="w-full sticky top-16 rounded-lg shadow-lg"
           />
@@ -126,26 +137,40 @@ const ProductPage = () => {
         {/* Product Info */}
         <div>
           <h1 className="text-3xl font-bold">{selectedProduct?.title}</h1>
-          <p className="text-gray-700 mt-2">
-            ${selectedProduct?.price.toFixed(2)} USD
+          <p className="font-bold text-xl mt-4">
+            $
+            {selectedSize?.price?.toFixed(2) ||
+              selectedSize[0]?.price?.toFixed(2) ||
+              selectedProduct?.basePrice?.toFixed(2)}{" "}
+            USD
           </p>
           <p className="mt-4">{selectedProduct?.description}</p>
 
-         
           <label className="w-full bg-black text-white py-2 rounded-md my-5 flex items-center justify-center cursor-pointer">
-            <span>Drag and drop your file or <span className="underline">Browse</span></span>
+            <span>
+              Drag and drop your file or{" "}
+              <span className="underline">Browse</span>
+            </span>
             <input type="file" className="hidden" />
           </label>
 
           {/* Sizes */}
           <h2>Size:</h2>
           <div className="mt-4 flex flex-wrap gap-2">
-            {selectedProduct?.sizes.map((size, index) => (
+            {selectedProduct?.sizes?.map((size, index) => (
               <span
                 key={index}
-                className="px-4 py-2 bg-gray-200 rounded-md cursor-pointer"                
+                className={`px-4 py-2  rounded-md cursor-pointer ${
+                  selectedSize?.size === size?.size
+                    ? "bg-gray-800 text-white"
+                    : "bg-gray-200"
+                }`}
+                onClick={() => {
+                  setSelectedSize(size);
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
               >
-                {size}
+                {size?.size}
               </span>
             ))}
           </div>
@@ -160,27 +185,26 @@ const ProductPage = () => {
               Add to cart
             </button>
             <div className="w-full bg-purple-600 text-white text-center py-2 rounded-md">
-            <a
-            href="https://www.visa.com/"
-            target="_blank"
-            >
-              Buy with VISA
-            </a>
+              <a href="https://www.visa.com/" target="_blank">
+                Buy with VISA
+              </a>
             </div>
           </div>
 
           {/* Expandable Features Section */}
           <div className="mt-10 space-y-4">
-            {features.map((feature, index) => (
-              <div key={index} className="border rounded-lg p-4 shadow-md">
+            {features?.map((feature, index) => (
+              <div
+                key={index}
+                className="border hover:bg-gray-100  rounded-lg p-4 shadow-md"
+              >
                 <button
                   onClick={() =>
                     setExpandedFeature(expandedFeature === index ? null : index)
-                    
                   }
                   className="w-full text-left flex justify-between items-center"
                 >
-                  <span className="font-semibold">{feature.title}</span>
+                  <span className="font-semibold">{feature?.title}</span>
                   <span>
                     {expandedFeature === index ? (
                       <ChevronUp />
@@ -190,7 +214,7 @@ const ProductPage = () => {
                   </span>
                 </button>
                 {expandedFeature === index && (
-                  <p className="mt-2 text-gray-600">{feature.content}</p>
+                  <p className="mt-2 py-2 border-t ">{feature?.content}</p>
                 )}
               </div>
             ))}
@@ -206,17 +230,22 @@ const ProductPage = () => {
             .filter((product) => product.id !== selectedProduct?.id)
             .map((item) => (
               <div
-                key={item.id}
+                key={item?.id}
                 className="border rounded-lg p-4 shadow-md cursor-pointer w-80 hover:shadow-lg transition"
-                onClick={() => navigate(`/products/${item.id}`)}
+                onClick={() => {
+                  navigate(`/products/${item.id}`);
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
               >
                 <img
-                  src={item.mainImage}
-                  alt={item.title}
+                  src={item?.mainImage}
+                  alt={item?.title}
                   className="h-40 object-cover rounded-lg"
                 />
-                <h3 className="mt-2 font-semibold">{item.title}</h3>
-                <p className="text-gray-700">${item.price.toFixed(2)} USD</p>
+                <h3 className="mt-2 font-semibold">{item?.title}</h3>
+                <p className="text-gray-700">
+                  ${item?.basePrice?.toFixed(2)} USD
+                </p>
               </div>
             ))}
         </div>

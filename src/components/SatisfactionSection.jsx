@@ -45,12 +45,15 @@ const SatisfactionSection = () => {
 
       {/* Right Side - Features Grid */}
       <div className="w-full md:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8 md:mt-0">
-        {features.map((feature) => (
-          <div key={feature.id} className="flex flex-col items-center md:items-start space-y-5">
-            {feature.icon}
+        {features?.map((feature) => (
+          <div
+            key={feature?.id}
+            className="flex flex-col items-center md:items-start space-y-5"
+          >
+            {feature?.icon}
 
-            <h3 className="font-semibold text-xl">{feature.title}</h3>
-            <p className="text-gray-600 text-lg">{feature.description}</p>
+            <h3 className="font-semibold text-xl">{feature?.title}</h3>
+            <p className="text-gray-600 text-lg">{feature?.description}</p>
           </div>
         ))}
       </div>

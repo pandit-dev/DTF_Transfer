@@ -1,12 +1,19 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Search, User, ShoppingBag, ChevronDown, ChevronUp, Menu, X } from 'lucide-react';
-import { NavLink } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from "react";
+import {
+  Search,
+  User,
+  ShoppingBag,
+  ChevronDown,
+  ChevronUp,
+  Menu,
+  X,
+} from "lucide-react";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const dropdownRef = useRef(null);
-  // const menuOpenRef = useRef(null)
 
   useEffect(() => {
     function handleClickOutside(e) {
@@ -14,16 +21,16 @@ const Navbar = () => {
         setIsDropdownOpen(false);
       }
     }
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   useEffect(() => {
     function handleScroll() {
       setIsDropdownOpen(false);
     }
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -35,8 +42,8 @@ const Navbar = () => {
         <h1 className="text-xl font-bold">
           <img src="/home/kinglogo.png" alt="KINGS DTF" className="w-36" />
         </h1>
-         {/* Hamburger Menu (Mobile) */}
-         <button
+        {/* Hamburger Menu (Mobile) */}
+        <button
           className="text-2xl md:hidden   focus:outline-none"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle Menu"
@@ -52,15 +59,23 @@ const Navbar = () => {
           <NavLink
             to="/"
             className={({ isActive }) =>
-              `cursor-pointer font-medium text-center ${isActive ? 'underline font-bold' : ''}`
-            } onClick={()=>{setIsMenuOpen(false)}}
+              `cursor-pointer hover:underline font-medium text-center ${
+                isActive ? "underline font-bold" : ""
+              }`
+            }
+            onClick={() => {
+              setIsMenuOpen(false);
+            }}
           >
             Home
           </NavLink>
-          <NavLink ref={dropdownRef} className="relative cursor-pointer font-medium flex items-center">
+          <NavLink
+            ref={dropdownRef}
+            className="relative cursor-pointer hover:underline font-medium flex items-center"
+          >
             <span
               className={`flex items-center ${
-                isDropdownOpen ? 'underline font-bold' : ''
+                isDropdownOpen ? "underline font-bold" : ""
               }`}
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
             >
@@ -78,10 +93,12 @@ const Navbar = () => {
                   to="/products/2"
                   className={({ isActive }) =>
                     `px-4 py-2 hover:bg-gray-100 cursor-pointer ${
-                      isActive ? 'underline font-bold' : ''
+                      isActive ? "underline font-bold" : ""
                     }`
                   }
-                  onClick={()=>{setIsDropdownOpen(false),setIsMenuOpen(false)}}
+                  onClick={() => {
+                    setIsDropdownOpen(false), setIsMenuOpen(false);
+                  }}
                 >
                   DTF GANG SHEET TRANSFERS
                 </NavLink>
@@ -89,9 +106,12 @@ const Navbar = () => {
                   to="/products/1"
                   className={({ isActive }) =>
                     `px-4 py-2 hover:bg-gray-100 cursor-pointer ${
-                      isActive ? 'underline font-bold' : ''
+                      isActive ? "underline font-bold" : ""
                     }`
-                  } onClick={()=>{setIsDropdownOpen(false),setIsMenuOpen(false)}}
+                  }
+                  onClick={() => {
+                    setIsDropdownOpen(false), setIsMenuOpen(false);
+                  }}
                 >
                   DTF TRANSFERS BY SIZE
                 </NavLink>
@@ -99,9 +119,12 @@ const Navbar = () => {
                   to="/products/3"
                   className={({ isActive }) =>
                     `px-4 py-2 hover:bg-gray-100 cursor-pointer ${
-                      isActive ? 'underline font-bold' : ''
+                      isActive ? "underline font-bold" : ""
                     }`
-                  } onClick={()=>{setIsDropdownOpen(false),setIsMenuOpen(false)}}
+                  }
+                  onClick={() => {
+                    setIsDropdownOpen(false), setIsMenuOpen(false);
+                  }}
                 >
                   DTF Transfers Custom Sizing
                 </NavLink>
@@ -111,34 +134,48 @@ const Navbar = () => {
           <NavLink
             to="/faq"
             className={({ isActive }) =>
-              `cursor-pointer font-medium text-center ${isActive ? 'underline font-bold' : ''}`
-            } onClick={()=>{setIsMenuOpen(false)}}
+              `cursor-pointer font-medium hover:underline text-center ${
+                isActive ? "underline font-bold" : ""
+              }`
+            }
+            onClick={() => {
+              setIsMenuOpen(false);
+            }}
           >
             FAQ
           </NavLink>
           <NavLink
             to="/blogs"
             className={({ isActive }) =>
-              `cursor-pointer font-medium ${isActive ? 'underline font-bold' : ''}`
-            } onClick={()=>{setIsMenuOpen(false)}}
+              `cursor-pointer hover:underline font-medium ${
+                isActive ? "underline font-bold" : ""
+              }`
+            }
+            onClick={() => {
+              setIsMenuOpen(false);
+            }}
           >
             Blogs
           </NavLink>
           <NavLink
             to="/contact"
             className={({ isActive }) =>
-              `cursor-pointer font-medium ${isActive ? 'underline font-bold' : ''}`
-            } onClick={()=>{setIsMenuOpen(false)}}
+              `cursor-pointer hover:underline font-medium ${
+                isActive ? "underline font-bold" : ""
+              }`
+            }
+            onClick={() => {
+              setIsMenuOpen(false);
+            }}
           >
             Contact
           </NavLink>
-          </ul>
+        </ul>
         <div className=" space-x-8 hidden md:flex">
           <Search className="cursor-pointer w-6 h-6" />
           <User className="cursor-pointer w-6 h-6" />
           <ShoppingBag className="cursor-pointer w-6 h-6" />
         </div>
-        
       </nav>
     </>
   );

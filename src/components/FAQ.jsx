@@ -51,7 +51,7 @@ const FAQ = () => {
           Frequently Asked Questions
         </h2>
         <div className="space-y-4">
-          {faqs.map((faq, index) => (
+          {faqs?.map((faq, index) => (
             <div
               key={index}
               className="border border-gray-300 rounded-lg shadow-md"
@@ -60,14 +60,14 @@ const FAQ = () => {
                 onClick={() => toggleFAQ(index)}
                 className="w-full flex justify-between items-center p-4 text-lg font-medium bg-blue-50 hover:bg-blue-100 transition-all"
               >
-                {faq.question}
+                {faq?.question}
                 <span>
                   {openIndex === index ? <ChevronUp /> : <ChevronDown />}
                 </span>
               </button>
               {openIndex === index && (
-                <div className="p-4 bg-white border-t border-gray-200">
-                  {faq.answer.split("\n").map((line, i) => (
+                <div className="p-4 bg-blue-200 border-t border-gray-200">
+                  {faq?.answer?.split("\n").map((line, i) => (
                     <p key={i} className="text-gray-700">
                       {line}
                     </p>

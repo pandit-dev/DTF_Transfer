@@ -8,7 +8,7 @@ const Blogs = () => {
           date: "January 27, 2025",
           description:
             "In the ever-growing world of custom printing, DTF (Direct-to-Film) printing has quickly gained popularity due to its versatility, vibrant colors, and durability...",
-          image: "/blogs/blogs1.webp", // Replace with actual image URL
+          image: "/blogs/blogs1.webp",
         },
         {
           id: 2,
@@ -38,20 +38,20 @@ const Blogs = () => {
   return (
     <>
     <div className="grid md:grid-cols-2 gap-6">
-        {blogs.map((blog) => (
+        {blogs?.map((blog) => (
           <div
-            key={blog.id}
+            key={blog?.id}
             className="bg-white shadow-lg rounded-lg overflow-hidden"
           >
             <img
-              src={blog.image}
-              alt={blog.title}
+              src={blog?.image}
+              alt={blog?.title}
               
             />
             <div className="p-4">
-              <h3 className="text-lg font-bold">{blog.title}</h3>
-              <p className="text-sm text-gray-500 mt-1">{blog.date}</p>
-              <p className="text-gray-700 mt-2">{blog.description}</p>
+              <h3 className="text-lg font-bold">{blog?.title}</h3>
+              <p className="text-sm text-gray-500 mt-1">{blog?.date}</p>
+              <p className="text-gray-700 mt-2">{blog?.description}</p>
               <a
                 href="#"
                 className="mt-3 inline-block text-blue-500 font-semibold hover:underline"

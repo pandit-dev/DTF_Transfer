@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const steps = [
   {
@@ -6,7 +6,7 @@ const steps = [
     title: "Position Your Design",
     description:
       "Place your transfer in the desired position, ensuring there are no large wrinkles in the area you're pressing. For hats or when using a household iron, heat-resistant tape can be helpful to keep the transfer in place. With experience, you'll know when it's necessary.",
-      image: "/heat/heat2.webp",
+    image: "/heat/heat2.webp",
   },
   {
     id: 2,
@@ -26,12 +26,16 @@ const steps = [
     id: 4,
     title: "Final Press",
     description:
-    "Important: Unlike most DTF companies that recommend pressing only once, we have discovered through extensive wash tests that a final press is essential for achieving the best results.",
+      "Important: Unlike most DTF companies that recommend pressing only once, we have discovered through extensive wash tests that a final press is essential for achieving the best results.",
     image: "/heat/heat5.webp",
   },
 ];
 
 const HeatPress = () => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
   return (
     <div className="bg-white py-12 px-6">
       <div className="max-w-6xl mx-auto text-center">
@@ -56,43 +60,40 @@ const HeatPress = () => {
               hot. If needed, press again for another 10-15 seconds.
             </p>
           </div>
-          
-            {/* Main Image */}
-            <div className="mt-6 md:w-1/2">
-              <img
-                src="/heat/heat1.webp"
-                alt="Heat Press Process"
-                className="rounded-lg shadow-lg"
-              />
-            </div>
-         
+
+          {/* Main Image */}
+          <div className="mt-6 md:w-1/2">
+            <img
+              src="/heat/heat1.webp"
+              alt="Heat Press Process"
+              className="rounded-lg shadow-lg"
+            />
+          </div>
         </div>
 
-        
-          <p className="text-lg font-semibold text-gray-800 mt-10">
-            We recommend watching the video above for step-by-step pressing
-            instructions.
-          </p>
-        
+        <p className="text-lg font-semibold text-gray-800 mt-10">
+          We recommend watching the video above for step-by-step pressing
+          instructions.
+        </p>
       </div>
 
       {/* Step-by-Step Guide */}
       <div className="max-w-5xl mx-auto mt-12 space-y-12">
-        {steps.map((step, index) => (
+        {steps?.map((step, index) => (
           <div
-            key={step.id}
+            key={step?.id}
             className={`flex flex-col md:flex-row items-center bg-white shadow-lg rounded-lg overflow-hidden gap-8 p-9  ${
               index % 2 === 0 ? "flex-row" : "md:flex-row-reverse"
             }`}
           >
             <img
-              src={step.image}
-              alt={step.title}
+              src={step?.image}
+              alt={step?.title}
               className="rounded-lg shadow-lg md:w-1/2"
             />
             <div>
-              <h3 className="text-xl font-bold text-blue-600">{step.title}</h3>
-              <p className="mt-2 text-gray-700">{step.description}</p>
+              <h3 className="text-xl font-bold text-blue-600">{step?.title}</h3>
+              <p className="mt-2 text-gray-700">{step?.description}</p>
             </div>
           </div>
         ))}
